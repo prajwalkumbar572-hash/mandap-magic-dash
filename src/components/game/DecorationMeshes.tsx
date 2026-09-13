@@ -173,15 +173,15 @@ function Lights() {
       if (m && "emissiveIntensity" in m) m.emissiveIntensity = 1 + Math.sin(t * 3 + i) * 0.9;
     });
   });
-  const colors = ["#ffd54f", "#ff7043", "#4fc3f7", "#81c784", "#ce93d8"];
+  const colors: string[] = ["#ffd54f", "#ff7043", "#4fc3f7", "#81c784", "#ce93d8"];
   return (
     <group ref={g}>
       {Array.from({ length: 10 }, (_, i) => (
         <mesh key={i} position={[-0.72 + i * 0.16, -Math.sin((i / 9) * Math.PI) * 0.22, 0]}>
           <sphereGeometry args={[0.055, 10, 8]} />
           <meshStandardMaterial
-            color={colors[i % colors.length]}
-            emissive={colors[i % colors.length]}
+            color={colors[i % colors.length] ?? "#ffd54f"}
+            emissive={colors[i % colors.length] ?? "#ffd54f"}
             emissiveIntensity={1.4}
             toneMapped={false}
           />
