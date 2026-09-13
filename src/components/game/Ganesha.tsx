@@ -26,9 +26,11 @@ function Trunk() {
     ]);
     return new THREE.TubeGeometry(curve, 48, 0.15, 12, false);
   }, []);
-  return <mesh geometry={geo} castShadow material-color={clay.color} scale={[1, 1, 1]}>
-    <meshStandardMaterial {...clay} />
-  </mesh>;
+  return (
+    <mesh geometry={geo} castShadow>
+      <meshStandardMaterial {...clay} />
+    </mesh>
+  );
 }
 
 function Arm({ side, upper }: { side: 1 | -1; upper: boolean }) {
