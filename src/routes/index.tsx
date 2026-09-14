@@ -1,24 +1,35 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { GameCanvas } from "@/components/game/GameCanvas";
+import { HUD } from "@/components/game/HUD";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  ssr: false, // WebGL canvas must never render on the server
+  head: () => ({
+    meta: [
+      { title: "Bappa Mandap Challenge — Ganesh Chaturthi 3D Game" },
+      {
+        name: "description",
+        content:
+          "Decorate a Ganesh Chaturthi mandap in 60 seconds! Place flowers, diyas, rangoli and garlands, complete challenges and earn Bappa's blessing in this festive 3D browser game.",
+      },
+      { property: "og:title", content: "Bappa Mandap Challenge — Ganesh Chaturthi 3D Game" },
+      {
+        property: "og:description",
+        content:
+          "A 60-second festive decorating game: adorn the mandap, complete challenges and fill Bappa's Blessing Meter.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="fixed inset-0 overflow-hidden bg-[#1c0f0a]">
+      <GameCanvas />
+      <HUD />
     </div>
   );
 }
