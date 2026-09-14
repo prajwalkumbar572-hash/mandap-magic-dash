@@ -231,7 +231,7 @@ function PlacementHint() {
 
 function ScreenShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="absolute inset-0 z-30 flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm">
+    <div className="pointer-events-auto absolute inset-0 z-30 flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm">
       <div className="w-full max-w-lg rounded-3xl bg-gradient-to-b from-[#3a1210] to-[#220b08] p-6 text-center shadow-2xl ring-1 ring-amber-300/30 sm:p-8">
         {children}
       </div>
